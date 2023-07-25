@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-=======
 src/main/AndroidManifest.xml
 build.sbt
 .travis.yml
->>>>>>> Stashed changes
+
