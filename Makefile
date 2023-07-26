@@ -202,3 +202,12 @@ shellcheck:
 .PHONY: setup-new-sdk
 setup-new-sdk:
 	./scripts/setup_new_sdk.sh
+
+.PHONY: build-client-java
+build-client-java:
+	make build-client sdk_language=java tmpdir=${TMP_DIR}
+	# ... any other custom build steps ...
+
+.PHONY: test-client-java
+test-client-java: build-client-java
+	# ... any custom test code ...
