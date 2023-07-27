@@ -6,6 +6,7 @@ GO_DOCKER_TAG = 1
 DOTNET_DOCKER_TAG = 6.0
 GOLINT_DOCKER_TAG = v1.51-alpine
 BUSYBOX_DOCKER_TAG = 1
+GRADLE_DOCKER_TAG = 8.2
 PYTHON_DOCKER_TAG = 3.10
 # Other config
 CONFIG_DIR = ${PWD}/config
@@ -206,7 +207,7 @@ setup-new-sdk:
 .PHONY: build-client-java
 build-client-java:
 	make build-client sdk_language=java tmpdir=${TMP_DIR}
-	# ... any other custom build steps ...
+	make run-in-docker sdk_language=java image=gradle:${GRADLE_DOCKER_TAG} command="/bin/sh -c 'gradle fmt'"
 
 .PHONY: test-client-java
 test-client-java: build-client-java
