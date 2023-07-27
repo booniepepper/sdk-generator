@@ -25,5 +25,10 @@
   "enumUnknownDefaultCase": true,
   "allowUnicodeIdentifiers": true,
   "caseInsensitiveResponseHeaders": true,
-  "files": {}
+  "files": {
+    "Java/build.gradle.mustache" : {
+      "destinationFilename": "build.gradle",
+      "templateType": "SupportingFiles"
+    }
+  }
 }

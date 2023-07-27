@@ -13,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
-
-
 publishing {
     publications {
         maven(MavenPublication) {
@@ -26,26 +22,13 @@ publishing {
     }
 }
 
-task execute(type:JavaExec) {
-   main = System.getProperty('mainClass')
-   classpath = sourceSets.main.runtimeClasspath
-}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
+    withJavadocJar()
+    withSourcesJar()
 }
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
 
 ext {
     {{#swagger1AnnotationLibrary}}
@@ -102,3 +85,8 @@ spotless {
         importOrder()
     }
 }
+
+// Use spotless plugin to automatically format code, remove unused import, etc
+// To apply changes directly to the file, run `gradlew spotlessApply`
+// Ref: https://github.com/diffplug/spotless/tree/main/plugin-gradle
+tasks.register('fmt')
